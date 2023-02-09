@@ -16,7 +16,11 @@ public class MoedaController : MonoBehaviour
         {
             Debug.Log("Moeda");
 
-            GetComponent<CoinsCounter>().SetText(col.GetComponent<MoveController>().pontos++);
+            col.GetComponent<MoveController>().pontos += 1;
+
+            int pontos = col.GetComponent<MoveController>().pontos;
+            
+            GetComponent<CoinsCounter>().SetText(pontos);
 
             Destroy(gameObject); // col.gameobject vai destruir o que ele ta colidindo
         }
