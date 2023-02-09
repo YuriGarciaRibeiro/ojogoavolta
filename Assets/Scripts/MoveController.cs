@@ -18,6 +18,8 @@ public class MoveController : MonoBehaviour
 
     public bool onGround;
 
+    public int pontos = 0;
+
     private Rigidbody rb;
 
 
