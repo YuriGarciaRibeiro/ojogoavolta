@@ -16,12 +16,19 @@ public class MoveController : MonoBehaviour
 
     public float camMin, camMax;
 
+    public bool onGround;
+
     private Rigidbody rb;
+
+
+    public float groundCheckDistance = 0.1f;
+    public LayerMask groundLayer;
+
 
     //public float horizontalMin, horizontalMax, verticalMin, verticalMax;
 
     [SerializeField]private GameObject posicaoInicial;
-
+    
     public float jump;
 
 
@@ -44,13 +51,12 @@ public class MoveController : MonoBehaviour
     }
 
     private void Jump() {
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.Space) && onGround) {
             rb.velocity = new Vector3(0, jump, 0);
         }
 
         
     }
-
 
 
 
@@ -66,6 +72,9 @@ public class MoveController : MonoBehaviour
 
         cam.transform.eulerAngles = Vector3.zero;
     }
+
+    
+
 
 
     void Update()
@@ -87,6 +96,10 @@ public class MoveController : MonoBehaviour
         cam.transform.position = transform.GetChild(0).position;
 
         Jump();
+
+
+        onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+
 
     }
 }

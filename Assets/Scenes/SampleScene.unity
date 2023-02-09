@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 99762878}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685546844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0.355, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 1566946727}
   - component: {fileID: 1566946728}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Personagem
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,8 +743,15 @@ MonoBehaviour:
   deslocamentoVertical: 0
   deslocamentoHorizontal: 0
   sense: 130
+  camMin: -90
+  camMax: 90
+  onGround: 1
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   posicaoInicial: {fileID: 1880975465}
-  salto: 0
+  jump: 2
 --- !u!114 &1566946728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,7 +781,7 @@ GameObject:
   - component: {fileID: 1847955552}
   - component: {fileID: 1847955553}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: inimigo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
