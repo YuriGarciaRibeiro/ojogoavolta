@@ -7,6 +7,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     private GameObject heart;
+    private GameObject HalfHeart;
 
     [SerializeField]
     [Header("Localização do coração")]
@@ -15,20 +16,109 @@ public class HealthController : MonoBehaviour
 
     public int healthAct;
     public int healthMax = 20;
+    public int vidaAntes;
 
     public List<GameObject> heartList= new List<GameObject>();
 
 
     void TakeDamage(int damage) {
+
+        vidaAntes = healthAct;
         healthAct -= damage;
 
+
+        if (damage % 2 == 0)
+        {
+
+
+            if (healthAct % 2 == 0)
+            {
+                for (int i = 1; i <= (vidaAntes - healthAct); i += 2)
+                {
+                    GameObject coracao = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao);
+
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+                {
+                    GameObject coracao = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao);
+
+                }
+                GameObject coracao2 = heartList[heartList.Count - 1];
+                heartList.Remove(heartList[heartList.Count - 1]);
+                Destroy(coracao2);
+                GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                heartList.Add(halfheart);
+            }
+        }
+        else
+        {
+
+
+            if (healthAct % 2 == 0) {
+                
+                if (vidaAntes - healthAct == 1) {
+                    print("teste1");
+                    GameObject coracao = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao);
+                    
+                }
+                else
+                {
+                    print("teste2");
+                    for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+                    {
+                        GameObject coracao = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao);
+                    }
+                    GameObject coracao2 = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao2);
+                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                    heartList.Add(halfheart);
+                }
+            }
+            else
+            {
+                if(vidaAntes - healthAct == 1)
+                {
+                    print("teste3");
+                    GameObject coracao2 = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao2);
+                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                    heartList.Add(halfheart);
+                }
+                else
+                {
+                    print("teste2");
+                    for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+                    {
+                        GameObject coracao = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao);
+                    }
+                    GameObject coracao2 = heartList[heartList.Count - 1];
+                    heartList.Remove(heartList[heartList.Count - 1]);
+                    Destroy(coracao2);
+                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                    heartList.Add(halfheart);
+                }
+                
+            }
+        }
+            
+            
         
-
-        GameObject heart = heartList[heartList.Count - 1];
-        heartList.Remove(heartList[heartList.Count - 1]);
-        Destroy(heart);
-
-
+        
 
 
         if (healthAct <= 0) { 
@@ -50,7 +140,7 @@ public class HealthController : MonoBehaviour
     {
         if (healthAct == 0) {
             
-            for (int i = 1; i <= healthMax; i+=1) {
+            for (int i = 1; i <= healthMax; i+=2) {
                 GameObject heart = Instantiate(this.heart, heartLocation);
                 heartList.Add(heart);
             }
@@ -69,6 +159,7 @@ public class HealthController : MonoBehaviour
     {
         
         heart = Resources.Load("heart") as GameObject;
+        HalfHeart = Resources.Load("HalfHeart") as GameObject;
         AddHeart();
     }
 
