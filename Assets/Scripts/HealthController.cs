@@ -6,16 +6,34 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    private GameObject heart;
+
+    [SerializeField]
+    [Header("Localização do coração")]
+    private Transform heartLocation;
+
 
     public int healthAct;
-    public int healthMax = 100;
+    public int healthMax = 20;
+
+    public List<GameObject> heartList= new List<GameObject>();
 
 
     void TakeDamage(int damage) {
         healthAct -= damage;
 
+        
+
+        GameObject heart = heartList[heartList.Count - 1];
+        heartList.Remove(heartList[heartList.Count - 1]);
+        Destroy(heart);
+
+
+
+
         if (healthAct <= 0) { 
             healthAct= 0;
+
             Dead();
         }
     }
@@ -27,6 +45,21 @@ public class HealthController : MonoBehaviour
 
         }
     }
+
+    private void AddHeart ()
+    {
+        if (healthAct == 0) {
+            
+            for (int i = 1; i <= healthMax; i+=1) {
+                GameObject heart = Instantiate(this.heart, heartLocation);
+                heartList.Add(heart);
+            }
+            healthAct = healthMax;
+        }
+    
+    }
+
+
     private void Dead()
     {
         
@@ -34,7 +67,9 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
-        healthAct = healthMax;
+        
+        heart = Resources.Load("heart") as GameObject;
+        AddHeart();
     }
 
     
@@ -42,4 +77,12 @@ public class HealthController : MonoBehaviour
     {
         
     }
+
+
+
+
+
+
+
+
 }
