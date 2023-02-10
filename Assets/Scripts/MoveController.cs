@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class MoveController : MonoBehaviour
@@ -21,6 +22,8 @@ public class MoveController : MonoBehaviour
     public int pontos = 0;
 
     private Rigidbody rb;
+
+    public Animator controller;
 
 
     public float groundCheckDistance = 0.1f;
@@ -64,6 +67,9 @@ public class MoveController : MonoBehaviour
 
     void Start()
     {
+        controller.SetBool("idle", true);
+
+
         rb = GetComponent<Rigidbody>();
 
         cam = Camera.main;
@@ -75,9 +81,12 @@ public class MoveController : MonoBehaviour
         cam.transform.eulerAngles = Vector3.zero;
     }
 
-    
 
 
+    //IEnumerator animationTime(int i, float f)
+    //{
+
+    //}
 
     void Update()
     {
@@ -86,10 +95,28 @@ public class MoveController : MonoBehaviour
 
         deslocamentoHorizontal = Input.GetAxis("Horizontal") * velocidade;
         deslocamentoHorizontal *= Time.deltaTime;
+        //Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D
+        // andar
+        print(deslocamentoVertical);
+        print(deslocamentoHorizontal);
+        if (deslocamentoVertical > 0) {
+            controller.SetBool("walk", true);
+            controller.SetBool("idle", false);
+        }
+        else if (deslocamentoVertical < 0)
+        {
+            controller.SetBool("walkBack", true);
+            controller.SetBool("idle", false);
+        }
+        else if(deslocamentoHorizontal == 0 && deslocamentoVertical == 0)
+        {
+            controller.SetBool("idle", true);
+            controller.SetBool("walk", false);
+            controller.SetBool("walkBack", false);
+            controller.SetBool("run", false);
+            controller.SetBool("pontadepe", false);
+        }
 
-        
-
-        
 
         this.transform.Translate(deslocamentoHorizontal, 0, deslocamentoVertical);
 

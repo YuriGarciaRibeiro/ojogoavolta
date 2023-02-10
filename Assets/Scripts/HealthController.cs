@@ -20,113 +20,119 @@ public class HealthController : MonoBehaviour
 
     public List<GameObject> heartList= new List<GameObject>();
 
-
+    
     void TakeDamage(int damage) {
 
         vidaAntes = healthAct;
         healthAct -= damage;
 
-
-        if (damage % 2 == 0)
+        
+        if (healthAct <= 0)
         {
-
-
-            if (healthAct % 2 == 0)
-            {
-                print("teste1");
-                for (int i = 1; i <= (vidaAntes - healthAct); i += 2)
-                {
-                    GameObject coracao = heartList[heartList.Count - 1];
-                    heartList.Remove(heartList[heartList.Count - 1]);
-                    Destroy(coracao);
-
-                }
-            }
-            else
-            {
-                print("teste2");
-                for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
-                {
-                    GameObject coracao = heartList[heartList.Count - 1];
-                    heartList.Remove(heartList[heartList.Count - 1]);
-                    Destroy(coracao);
-
-                }
-                GameObject coracao2 = heartList[heartList.Count - 1];
-                heartList.Remove(heartList[heartList.Count - 1]);
-                Destroy(coracao2);
-                GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
-                heartList.Add(halfheart);
-            }
+            healthAct = 0;
+            print(healthAct);
+            
         }
         else
         {
 
+            if (damage % 2 == 0)
+            {
 
-            if (healthAct % 2 == 0) {
-                
-                if (vidaAntes - healthAct == 1) {
-                    print("teste3");
-                    GameObject coracao = heartList[heartList.Count - 1];
-                    heartList.Remove(heartList[heartList.Count - 1]);
-                    Destroy(coracao);
-                    
+
+                if (healthAct % 2 == 0)
+                {
+                    print("teste1");
+                    for (int i = 1; i <= (vidaAntes - healthAct); i += 2)
+                    {
+                        GameObject coracao = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao);
+
+                    }
                 }
                 else
                 {
-                    print("teste4");
+                    print("teste2");
                     for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
                     {
                         GameObject coracao = heartList[heartList.Count - 1];
                         heartList.Remove(heartList[heartList.Count - 1]);
                         Destroy(coracao);
+
                     }
                     GameObject coracao2 = heartList[heartList.Count - 1];
                     heartList.Remove(heartList[heartList.Count - 1]);
                     Destroy(coracao2);
-                 
+                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                    heartList.Add(halfheart);
                 }
             }
             else
             {
-                if(vidaAntes - healthAct == 1)
+
+
+                if (healthAct % 2 == 0)
                 {
-                    print("teste5");
-                    GameObject coracao2 = heartList[heartList.Count - 1];
-                    heartList.Remove(heartList[heartList.Count - 1]);
-                    Destroy(coracao2);
-                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
-                    heartList.Add(halfheart);
-                }
-                else
-                {
-                    print("teste6");
-                    for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+
+                    if (vidaAntes - healthAct == 1)
                     {
+                        print("teste3");
                         GameObject coracao = heartList[heartList.Count - 1];
                         heartList.Remove(heartList[heartList.Count - 1]);
                         Destroy(coracao);
+
                     }
-                    GameObject coracao2 = heartList[heartList.Count - 1];
-                    heartList.Remove(heartList[heartList.Count - 1]);
-                    Destroy(coracao2);
-                    GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
-                    heartList.Add(halfheart);
+                    else
+                    {
+                        print("teste4");
+                        for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+                        {
+                            GameObject coracao = heartList[heartList.Count - 1];
+                            heartList.Remove(heartList[heartList.Count - 1]);
+                            Destroy(coracao);
+                        }
+                        GameObject coracao2 = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao2);
+
+                    }
                 }
-                
+                else
+                {
+                    if (vidaAntes - healthAct == 1)
+                    {
+                        print("teste5");
+                        GameObject coracao2 = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao2);
+                        GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                        heartList.Add(halfheart);
+                    }
+                    else
+                    {
+                        print("teste6");
+                        for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
+                        {
+                            GameObject coracao = heartList[heartList.Count - 1];
+                            heartList.Remove(heartList[heartList.Count - 1]);
+                            Destroy(coracao);
+                        }
+                        GameObject coracao2 = heartList[heartList.Count - 1];
+                        heartList.Remove(heartList[heartList.Count - 1]);
+                        Destroy(coracao2);
+                        GameObject halfheart = Instantiate(this.HalfHeart, heartLocation);
+                        heartList.Add(halfheart);
+                    }
+
+                }
             }
+
         }
-            
-            
-        
-        
+     
 
 
-        if (healthAct <= 0) { 
-            healthAct= 0;
 
-            Dead();
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -153,7 +159,7 @@ public class HealthController : MonoBehaviour
 
     private void Dead()
     {
-        
+        Destroy(gameObject);
     }
 
     void Start()
