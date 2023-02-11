@@ -58,9 +58,10 @@ public class MoveController : MonoBehaviour
     private void Jump() {
         if (Input.GetKey(KeyCode.Space) && onGround) {
             rb.velocity = new Vector3(0, jump, 0);
+            
         }
-
         
+
     }
 
 
@@ -118,6 +119,16 @@ public class MoveController : MonoBehaviour
         }
 
 
+        if(Input.GetKey(KeyCode.Space) && onGround)
+        {
+            controller.SetBool("pulo", true);
+            
+        }
+        else if(onGround)
+        {
+            controller.SetBool("pulo", false);
+        }
+
         this.transform.Translate(deslocamentoHorizontal, 0, deslocamentoVertical);
 
         MoveCamera();
@@ -125,6 +136,7 @@ public class MoveController : MonoBehaviour
         cam.transform.position = transform.GetChild(0).position;
 
         Jump();
+
 
 
         onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
