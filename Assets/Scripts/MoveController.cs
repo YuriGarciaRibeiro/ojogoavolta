@@ -97,8 +97,6 @@ public class MoveController : MonoBehaviour
         deslocamentoHorizontal *= Time.deltaTime;
         //Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D
         // andar
-        print(deslocamentoVertical);
-        print(deslocamentoHorizontal);
         if (deslocamentoVertical > 0) {
             controller.SetBool("walk", true);
             controller.SetBool("idle", false);
