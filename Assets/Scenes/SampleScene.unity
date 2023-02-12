@@ -435,6 +435,9 @@ MonoBehaviour:
   attackDamage: 0
   movementSpeed: 0
   lookRadius: 8.05
+  colliderRadius: 2
+  attacking: 0
+  walking: 0
 --- !u!195 &327162581
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1042,6 +1045,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fcceefa9f7e539d479139133558b499f, type: 3}
       propertyPath: m_Name
       value: Mutant Dying
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fcceefa9f7e539d479139133558b499f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcceefa9f7e539d479139133558b499f, type: 3}
