@@ -1636,8 +1636,8 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 13d04d75e2b518044a6bda0f09ca7d4f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.17
-  m_Height: 1.7
+  m_Radius: 0.15
+  m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.78, z: 0}
 --- !u!114 &1877020866
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   onGround: 0
   pontos: 0
   controller: {fileID: 1877020863}
-  groundCheckDistance: 0.1
+  groundCheckDistance: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1724,7 +1724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880975465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4, y: 0.1, z: -13.27}
+  m_LocalPosition: {x: -1.4, y: 0, z: -13.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
