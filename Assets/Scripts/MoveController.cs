@@ -25,6 +25,11 @@ public class MoveController : MonoBehaviour
 
     public Animator controller;
 
+    private Animator animator;
+
+
+
+
 
     public float groundCheckDistance = 0.1f;
     public LayerMask groundLayer;
@@ -56,12 +61,38 @@ public class MoveController : MonoBehaviour
     }
 
     private void Jump() {
-        if (Input.GetKey(KeyCode.Space) && onGround) {
+
+
+        if (Input.GetKey(KeyCode.Space) && onGround && !AnimatorIsPlaying("jump"))
+        {
+            print("test1");
             rb.velocity = new Vector3(0, jump, 0);
-        }
+
 
         
+            controller.SetBool("pulo", true);
+
+            
+       
+        }
+        else if (onGround && !Input.GetKey(KeyCode.Space))
+        {
+            controller.SetBool("pulo", false);
+        }
     }
+
+    bool AnimatorIsPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).length >
+               animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    bool AnimatorIsPlaying(string stateName)
+    {
+        return AnimatorIsPlaying() && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+
 
 
 
@@ -79,6 +110,9 @@ public class MoveController : MonoBehaviour
         LockMouse(true);
 
         cam.transform.eulerAngles = Vector3.zero;
+
+        animator = GetComponent<Animator>();
+
     }
 
 
@@ -97,8 +131,7 @@ public class MoveController : MonoBehaviour
         deslocamentoHorizontal *= Time.deltaTime;
         //Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D
         // andar
-        print(deslocamentoVertical);
-        print(deslocamentoHorizontal);
+        
         if (deslocamentoVertical > 0) {
             controller.SetBool("walk", true);
             controller.SetBool("idle", false);
@@ -118,6 +151,8 @@ public class MoveController : MonoBehaviour
         }
 
 
+        
+
         this.transform.Translate(deslocamentoHorizontal, 0, deslocamentoVertical);
 
         MoveCamera();
@@ -125,6 +160,7 @@ public class MoveController : MonoBehaviour
         cam.transform.position = transform.GetChild(0).position;
 
         Jump();
+
 
 
         onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);

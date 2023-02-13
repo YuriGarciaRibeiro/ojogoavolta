@@ -29,9 +29,18 @@ public class HealthController : MonoBehaviour
         
         if (healthAct <= 0)
         {
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             healthAct = 0;
             print(healthAct);
-            
+            //Dead();
+            for (int i = 1; i <= heartList.Count ; i += 2)
+            {
+                GameObject coracao = heartList[heartList.Count - 1];
+                heartList.Remove(heartList[heartList.Count - 1]);
+                Destroy(coracao);
+
+            }
+
         }
         else
         {
