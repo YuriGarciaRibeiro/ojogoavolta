@@ -75,7 +75,7 @@ public class MoveController : MonoBehaviour
             
        
         }
-        else if (onGround && !Input.GetKey(KeyCode.Space))
+        else if (onGround && !AnimatorIsPlaying("jump"))
         {
             controller.SetBool("pulo", false);
         }
