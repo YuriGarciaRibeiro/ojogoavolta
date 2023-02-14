@@ -52,12 +52,13 @@ public class CombatEnemy : MonoBehaviour
         {
             //personagem está no raio de ação
             agent.isStopped = false;
+            anim.SetBool("Walk Forward", true);
 
 
             if (!attacking)
             {
                 agent.SetDestination(player.position);
-                //anim.SetBool("Walk Forward", true);
+                anim.SetBool("Walk Forward", true);
                 walking = true;
 
             }
@@ -67,6 +68,7 @@ public class CombatEnemy : MonoBehaviour
             {
                 //personagem entrou no raio de ataque
                 StartCoroutine("Attack");
+                agent.isStopped = true;
             }
 
             else
@@ -79,7 +81,11 @@ public class CombatEnemy : MonoBehaviour
         else
         {
             //personagem esta fora do raio de ação
-            //agent.isStopped = true;
+            agent.isStopped = true;
+            anim.SetBool("Walk Forward", false);
+            walking = false;
+            attacking = false;
+            
 
         }
     }
