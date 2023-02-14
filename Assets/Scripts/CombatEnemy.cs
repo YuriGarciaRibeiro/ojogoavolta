@@ -68,7 +68,7 @@ public class CombatEnemy : MonoBehaviour
             {
                 //personagem entrou no raio de ataque
                 StartCoroutine("Attack");
-                agent.isStopped = true;
+                
             }
 
             else
@@ -113,8 +113,6 @@ public class CombatEnemy : MonoBehaviour
 
             if (c.gameObject.CompareTag("Player"))
             {
-
-
                 //APLICAR DANO NO PLAYER
                 Debug.Log("bateu");
 
