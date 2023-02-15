@@ -10,7 +10,7 @@ public class CombatEnemy : MonoBehaviour
 
     public float totalHealth;
 
-    public float attackDamage;
+    public int attackDamage;
 
     public float movementSpeed;
 
@@ -26,8 +26,9 @@ public class CombatEnemy : MonoBehaviour
     private Transform player;
 
 
-    public bool attacking;
+    private bool attacking;
     public bool walking;
+    private bool waitFor;
 
     public Collision collision;
 
@@ -52,7 +53,7 @@ public class CombatEnemy : MonoBehaviour
         {
             //personagem está no raio de ação
             agent.isStopped = false;
-            anim.SetBool("Walk Forward", true);
+            //anim.SetBool("Walk Forward", true);
 
 
             if (!attacking)
@@ -93,18 +94,25 @@ public class CombatEnemy : MonoBehaviour
     IEnumerator Attack()
     {
 
-        attacking = true;
-        walking = false;
-        agent.isStopped = true;
-        anim.SetBool("Walk Forward", false);
-        anim.SetBool("Bite Attack", true);
+        //yield return new WaitForSeconds(0.4f);
+        if (!waitFor)
+        {
+            waitFor = true;
+            attacking = true;
+            walking = false;
+
+            agent.isStopped = true;
+
+            anim.SetBool("Walk Forward", false);
+            anim.SetBool("Bite Attack", true);
 
 
-        yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(1.1f);
 
-        GetPlayer();
-
-        //yield return new WaitForSeconds(1f); 
+            GetPlayer();
+            //yield return new WaitForSeconds(1f);
+            waitFor = false;
+        }
 
     }
 
@@ -118,9 +126,13 @@ public class CombatEnemy : MonoBehaviour
             {
                 //APLICAR DANO NO PLAYER
                 Debug.Log("bateu");
-
             }
         }
+    }
+
+    public void GetHit() { 
+
+        
     }
 
     private void OnDrawGizmos()
