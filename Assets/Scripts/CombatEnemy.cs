@@ -95,6 +95,9 @@ public class CombatEnemy : MonoBehaviour
 
         attacking = true;
         walking = false;
+        agent.isStopped = true;
+        anim.SetBool("Walk Forward", false);
+        anim.SetBool("Bite Attack", true);
 
 
         yield return new WaitForSeconds(0.4f);
