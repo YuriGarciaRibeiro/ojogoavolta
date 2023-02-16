@@ -401,11 +401,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 0
-  attackDamage: 0
+  attackDamage: 1
   movementSpeed: 1.5
   lookRadius: 10
   colliderRadius: 2
-  attacking: 0
   walking: 0
 --- !u!195 &242414740
 NavMeshAgent:

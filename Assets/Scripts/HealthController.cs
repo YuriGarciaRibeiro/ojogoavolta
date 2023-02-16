@@ -21,7 +21,7 @@ public class HealthController : MonoBehaviour
     public List<GameObject> heartList= new List<GameObject>();
 
     
-    void TakeDamage(int damage) {
+    public void TakeDamage(int damage) {
 
         vidaAntes = healthAct;
         healthAct -= damage;
