@@ -64,8 +64,4 @@ public class PlayerAttackAnimation : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward +  mira, colliderRadius);
     }
-
-
-
-
 }

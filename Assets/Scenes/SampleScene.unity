@@ -442,6 +442,21 @@ CapsuleCollider:
   m_Height: 1.44
   m_Direction: 1
   m_Center: {x: 0, y: 0.58, z: 0}
+--- !u!114 &242414744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242414738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135e84a052dc23e43a867c87b7635b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAct: 0
+  healthMax: 20
+  damage: 0
 --- !u!1 &289705585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100120, guid: d1569800832d2bc419e28a8efa258d51, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100120, guid: d1569800832d2bc419e28a8efa258d51, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: d1569800832d2bc419e28a8efa258d51, type: 3}
       propertyPath: m_RootOrder
@@ -1829,14 +1848,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1877020861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61e4965ffceed04b8606c5318fd2828, type: 3}
+  m_Script: {fileID: 11500000, guid: 64afd775134570c4abb0d49bb1054b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanAttack: 1
-  AttackCoolDown: 1
-  controller: {fileID: 1877020863}
   colliderRadius: 2
-  attackDamage: 2
+  attackDamage: 1
+  mira: {x: 0, y: 2, z: 0}
 --- !u!1 &1880975465
 GameObject:
   m_ObjectHideFlags: 0
