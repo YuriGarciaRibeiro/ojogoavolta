@@ -1213,9 +1213,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderRadius: 2
-  attackDamage: 1
+  attackDamage: 8
   mira: {x: 0, y: 2, z: 0}
-  cooldown: 0
+  cooldown: 0.7
+  canAttack: 1
 --- !u!54 &1456603542
 Rigidbody:
   m_ObjectHideFlags: 0
