@@ -9,7 +9,8 @@ public class PlayerAttackAnimation : MonoBehaviour
     public float colliderRadius = 2.0f;
     public int attackDamage = 1;
     public Vector3 mira = new Vector3(0, 2, 0);
-    public float cooldown;
+    public float cooldown = 0.5f;
+    public bool canAttack = true;
 
     private Animator anim;
 
@@ -26,11 +27,9 @@ public class PlayerAttackAnimation : MonoBehaviour
 
     void GetMouseInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canAttack)
         { 
             StartCoroutine(Attack());
-
-    
         }
 
 
@@ -43,12 +42,13 @@ public class PlayerAttackAnimation : MonoBehaviour
 
     IEnumerator Attack()
     {
-
-        anim.SetTrigger("punch");
-        yield return new WaitForSeconds(4f);
         
+        
+        anim.SetTrigger("punch");
+        canAttack= false;
         GetEnemyList();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(cooldown);
+        canAttack= true;
         //anim.SetBool("punch", false);
 
     }
