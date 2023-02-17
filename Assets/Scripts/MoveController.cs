@@ -65,7 +65,7 @@ public class MoveController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && onGround && !AnimatorIsPlaying("jump"))
         {
-            print("test1");
+            //print("test1");
             rb.velocity = new Vector3(0, jump, 0);
 
 

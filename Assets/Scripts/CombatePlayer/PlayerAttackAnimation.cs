@@ -13,10 +13,15 @@ public class PlayerAttackAnimation : MonoBehaviour
 
 
 
+    void Update()
+    {
+        GetMouseInput();
+    }
+
     void GetMouseInput()
     {
         if (Input.GetMouseButtonDown(0))
-        {
+        { 
             StartCoroutine(Attack());
         }
 
@@ -25,18 +30,14 @@ public class PlayerAttackAnimation : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        GetMouseInput();
-    }
-
-
 
 
     IEnumerator Attack()
     {
+       // print("aquiuma");
         yield return new WaitForSeconds(1f);
         GetEnemyList();
+        //print("aqui a outra");
 
     }
 
@@ -45,9 +46,11 @@ public class PlayerAttackAnimation : MonoBehaviour
     {
         foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius))
         {
-
+            print("chegou no foreach");
+            print(c.gameObject.tag);
             if (c.gameObject.CompareTag("Enemy"))
             {
+                print("ta chegando aqui");
                 c.GetComponent<HealthEnemyContronller>().TakeDamage(attackDamage);
             }
 

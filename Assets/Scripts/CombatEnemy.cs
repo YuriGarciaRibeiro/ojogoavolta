@@ -7,7 +7,7 @@ public class CombatEnemy : MonoBehaviour
 {
     [Header("Atributtes")]
 
-
+    
     public float totalHealth;
 
     public int attackDamage;
