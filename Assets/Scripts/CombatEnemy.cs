@@ -126,6 +126,7 @@ public class CombatEnemy : MonoBehaviour
             {
                 //APLICAR DANO NO PLAYER
                 Debug.Log("bateu");
+                
                 c.GetComponent<HealthController>().TakeDamage(attackDamage);
             }
         }

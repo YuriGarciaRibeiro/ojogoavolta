@@ -9,8 +9,14 @@ public class PlayerAttackAnimation : MonoBehaviour
     public float colliderRadius = 2.0f;
     public int attackDamage = 1;
     public Vector3 mira = new Vector3(0, 2, 0);
+    public float cooldown;
 
+    private Animator anim;
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
 
     void Update()
@@ -23,6 +29,8 @@ public class PlayerAttackAnimation : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         { 
             StartCoroutine(Attack());
+
+    
         }
 
 
@@ -32,12 +40,16 @@ public class PlayerAttackAnimation : MonoBehaviour
 
 
 
+
     IEnumerator Attack()
     {
-       // print("aquiuma");
-        yield return new WaitForSeconds(1f);
+
+        anim.SetTrigger("punch");
+        yield return new WaitForSeconds(4f);
+        
         GetEnemyList();
-        //print("aqui a outra");
+        yield return new WaitForSeconds(4f);
+        //anim.SetBool("punch", false);
 
     }
 
@@ -45,12 +57,10 @@ public class PlayerAttackAnimation : MonoBehaviour
     void GetEnemyList()
     {
         foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius))
-        {
-            print("chegou no foreach");
-            print(c.gameObject.tag);
+        {     
             if (c.gameObject.CompareTag("Enemy"))
             {
-                print("ta chegando aqui");
+                
                 c.GetComponent<HealthEnemyContronller>().TakeDamage(attackDamage);
             }
 
