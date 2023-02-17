@@ -8,7 +8,7 @@ public class HealthEnemyContronller : MonoBehaviour
     public int healthMax = 100;
     public int damage;
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         healthAct -= damage;
 
@@ -19,7 +19,7 @@ public class HealthEnemyContronller : MonoBehaviour
         }
     }
 
-    private void Dead()
+    public  void Dead()
     {
         Destroy(gameObject);
     }

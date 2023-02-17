@@ -51,7 +51,7 @@ public class HealthController : MonoBehaviour
 
                 if (healthAct % 2 == 0)
                 {
-                    print("teste1");
+                    //print("teste1");
                     for (int i = 1; i <= (vidaAntes - healthAct); i += 2)
                     {
                         GameObject coracao = heartList[heartList.Count - 1];
@@ -62,7 +62,7 @@ public class HealthController : MonoBehaviour
                 }
                 else
                 {
-                    print("teste2");
+                    //print("teste2");
                     for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
                     {
                         GameObject coracao = heartList[heartList.Count - 1];
@@ -86,7 +86,7 @@ public class HealthController : MonoBehaviour
 
                     if (vidaAntes - healthAct == 1)
                     {
-                        print("teste3");
+                        //print("teste3");
                         GameObject coracao = heartList[heartList.Count - 1];
                         heartList.Remove(heartList[heartList.Count - 1]);
                         Destroy(coracao);
@@ -94,7 +94,7 @@ public class HealthController : MonoBehaviour
                     }
                     else
                     {
-                        print("teste4");
+                        //print("teste4");
                         for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
                         {
                             GameObject coracao = heartList[heartList.Count - 1];
@@ -111,7 +111,7 @@ public class HealthController : MonoBehaviour
                 {
                     if (vidaAntes - healthAct == 1)
                     {
-                        print("teste5");
+                        //print("teste5");
                         GameObject coracao2 = heartList[heartList.Count - 1];
                         heartList.Remove(heartList[heartList.Count - 1]);
                         Destroy(coracao2);
@@ -120,7 +120,7 @@ public class HealthController : MonoBehaviour
                     }
                     else
                     {
-                        print("teste6");
+                        //print("teste6");
                         for (int i = 1; i <= (vidaAntes - healthAct) / 2; i += 2)
                         {
                             GameObject coracao = heartList[heartList.Count - 1];
