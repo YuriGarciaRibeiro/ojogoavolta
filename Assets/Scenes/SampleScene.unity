@@ -1212,9 +1212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64afd775134570c4abb0d49bb1054b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 2
+  colliderRadius: 1.1
   attackDamage: 8
-  mira: {x: 0, y: 2, z: 0}
+  mira: {x: 0, y: 1, z: 0}
   cooldown: 0.7
   canAttack: 1
 --- !u!54 &1456603542

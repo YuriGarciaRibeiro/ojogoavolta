@@ -8,9 +8,12 @@ public class HealthEnemyContronller : MonoBehaviour
     public int healthMax = 100;
     public int damage;
 
+    private Animator anim;
+
     public void TakeDamage(int damage)
     {
         healthAct -= damage;
+        anim.SetTrigger("Take Damage");
 
         if (healthAct <= 0)
         {
@@ -33,6 +36,7 @@ public class HealthEnemyContronller : MonoBehaviour
     void Start()
     {
         healthAct = healthMax;
+        anim = GetComponent<Animator>();
     }
 
     void Update()

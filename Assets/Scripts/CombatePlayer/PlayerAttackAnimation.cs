@@ -43,13 +43,13 @@ public class PlayerAttackAnimation : MonoBehaviour
     IEnumerator Attack()
     {
         
-        
         anim.SetTrigger("punch");
         canAttack= false;
+        yield return new WaitForSeconds(0.8f);
         GetEnemyList();
         yield return new WaitForSeconds(cooldown);
         canAttack= true;
-        //anim.SetBool("punch", false);
+
 
     }
 
@@ -59,8 +59,7 @@ public class PlayerAttackAnimation : MonoBehaviour
         foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius))
         {     
             if (c.gameObject.CompareTag("Enemy"))
-            {
-                
+            { 
                 c.GetComponent<HealthEnemyContronller>().TakeDamage(attackDamage);
             }
 
