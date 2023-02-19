@@ -27,6 +27,16 @@ public class MoveController : MonoBehaviour
 
     private Animator animator;
 
+    public float speed;
+    private CharacterController character;
+
+    public float smoothRotTime;
+    private float turnSmoothVelocity;
+    Vector3 moveDirection;
+
+    private Transform cameraPrincipal;
+    public float gravity;
+
 
 
 
@@ -37,8 +47,8 @@ public class MoveController : MonoBehaviour
 
     //public float horizontalMin, horizontalMax, verticalMin, verticalMax;
 
-    [SerializeField]private GameObject posicaoInicial;
-    
+    [SerializeField] private GameObject posicaoInicial;
+
     public float jump;
 
 
@@ -49,14 +59,14 @@ public class MoveController : MonoBehaviour
 
         mouseY = Mathf.Clamp(mouseY, camMin, camMax);
 
-        cam.transform.eulerAngles = new Vector3(-mouseY, mouseX, 0 );
+        cam.transform.eulerAngles = new Vector3(-mouseY, mouseX, 0);
 
-        this.transform.eulerAngles = new Vector3(0,mouseX, 0);
+        this.transform.eulerAngles = new Vector3(0, mouseX, 0);
     }
 
     private void LockMouse(bool isLocked)
     {
-        Cursor.visible= isLocked;
+        Cursor.visible = isLocked;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -69,11 +79,11 @@ public class MoveController : MonoBehaviour
             rb.velocity = new Vector3(0, jump, 0);
 
 
-        
+
             controller.SetBool("pulo", true);
 
-            
-       
+
+
         }
         else if (onGround && !AnimatorIsPlaying("jump"))
         {
@@ -100,6 +110,7 @@ public class MoveController : MonoBehaviour
     {
         controller.SetBool("idle", true);
 
+        character = GetComponent<CharacterController>();
 
         rb = GetComponent<Rigidbody>();
 
@@ -113,6 +124,10 @@ public class MoveController : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
+        speed = 5f;
+
+        cameraPrincipal = Camera.main.transform;
+
     }
 
 
@@ -124,47 +139,61 @@ public class MoveController : MonoBehaviour
 
     void Update()
     {
-        deslocamentoVertical = Input.GetAxis("Vertical") * velocidade;
-        deslocamentoVertical *= Time.deltaTime;
-
-        deslocamentoHorizontal = Input.GetAxis("Horizontal") * velocidade;
-        deslocamentoHorizontal *= Time.deltaTime;
-        //Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D
-        // andar
-        
-        if (deslocamentoVertical > 0) {
-            controller.SetBool("walk", true);
-            controller.SetBool("idle", false);
-        }
-        else if (deslocamentoVertical < 0)
-        {
-            controller.SetBool("walkBack", true);
-            controller.SetBool("idle", false);
-        }
-        else if(deslocamentoHorizontal == 0 && deslocamentoVertical == 0)
-        {
-            controller.SetBool("idle", true);
-            controller.SetBool("walk", false);
-            controller.SetBool("walkBack", false);
-            controller.SetBool("run", false);
-            controller.SetBool("pontadepe", false);
-        }
 
 
-        
+        Move();
 
-        this.transform.Translate(deslocamentoHorizontal, 0, deslocamentoVertical);
+
+
+
 
         MoveCamera();
 
-        cam.transform.position = transform.GetChild(0).position;
+        //cam.transform.position = transform.GetChild(0).position;
 
-        Jump();
+        //Jump();
+
+        //onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+
+    }
+
+    private void Move()
+    {
 
 
+        if (character.isGrounded)
+        {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-        onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+            Vector3 direction = new(horizontal, 0f, vertical);
+
+            if (direction.magnitude > 0)
+            {
+                controller.SetBool("idle", false);
+                float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraPrincipal.eulerAngles.y;
+                float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, angle, ref turnSmoothVelocity, smoothRotTime);
+
+                transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+
+                moveDirection = Quaternion.Euler(0f, angle, 0f) * Vector3.forward * speed;
+
+                controller.SetBool("walk", true);
+
+                //GetComponent<PlayerAttackAnimation>().canAttack = false;
+            }
+
+            else { 
+            
+                controller.SetBool("idle", true);
+                controller.SetBool("walk", false);
+                moveDirection = Vector3.zero;
+            }
+        }
+
+        moveDirection.y -= gravity * Time.deltaTime;
 
 
+        character.Move(moveDirection * Time.deltaTime);
     }
 }

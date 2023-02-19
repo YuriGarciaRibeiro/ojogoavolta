@@ -12,6 +12,7 @@ public class PlayerAttackAnimation : MonoBehaviour
     public float cooldown = 0.5f;
     public bool canAttack = true;
 
+
     private Animator anim;
 
     private void Start()
@@ -25,15 +26,12 @@ public class PlayerAttackAnimation : MonoBehaviour
         GetMouseInput();
     }
 
-    void GetMouseInput()
+    public void GetMouseInput()
     {
         if (Input.GetMouseButtonDown(0) && canAttack)
-        { 
+        {
             StartCoroutine(Attack());
         }
-
-
-
     }
 
 
@@ -42,14 +40,15 @@ public class PlayerAttackAnimation : MonoBehaviour
 
     IEnumerator Attack()
     {
-        
-        anim.SetTrigger("punch");
-        canAttack= false;
-        yield return new WaitForSeconds(0.8f);
-        GetEnemyList();
-        yield return new WaitForSeconds(cooldown);
-        canAttack= true;
+            canAttack = true;
+            anim.SetTrigger("punch");
+            canAttack = false;
+            yield return new WaitForSeconds(0.8f);
+            GetEnemyList();
+            yield return new WaitForSeconds(cooldown);
+            canAttack = true;
 
+       
 
     }
 
