@@ -19,8 +19,9 @@ public class HealthEnemyContronller : MonoBehaviour
         if (healthAct <= 0)
         {
             healthAct = 0;
-            scriptCombat.vivo = false;
+            
             Dead();
+            scriptCombat.vivo = false;
         }
         else
         {
@@ -32,7 +33,10 @@ public class HealthEnemyContronller : MonoBehaviour
 
     public  void Dead()
     {
-        anim.SetTrigger("Die 02");
+        if (scriptCombat.vivo == true)
+        {
+            anim.SetTrigger("Die 02");
+        }
         
     }
 
