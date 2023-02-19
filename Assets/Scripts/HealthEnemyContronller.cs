@@ -9,6 +9,7 @@ public class HealthEnemyContronller : MonoBehaviour
     public int damage;
 
     private Animator anim;
+    public CombatEnemy scriptCombat;
 
     public void TakeDamage(int damage)
     {
@@ -18,6 +19,7 @@ public class HealthEnemyContronller : MonoBehaviour
         if (healthAct <= 0)
         {
             healthAct = 0;
+            scriptCombat.vivo = false;
             Dead();
         }
         else
@@ -31,7 +33,7 @@ public class HealthEnemyContronller : MonoBehaviour
     public  void Dead()
     {
         anim.SetTrigger("Die 02");
-        //faz parar de seguir
+        
     }
 
     public void SetDamage(int damage)
@@ -44,6 +46,7 @@ public class HealthEnemyContronller : MonoBehaviour
     {
         healthAct = healthMax;
         anim = GetComponent<Animator>();
+        scriptCombat = GetComponent<CombatEnemy>();
     }
 
     void Update()

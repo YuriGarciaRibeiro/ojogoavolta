@@ -29,6 +29,8 @@ public class CombatEnemy : MonoBehaviour
     private bool attacking;
     public bool walking;
     private bool waitFor;
+    public bool vivo;
+
 
     public Collision collision;
 
@@ -42,6 +44,7 @@ public class CombatEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        vivo = true;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class CombatEnemy : MonoBehaviour
 
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if (distance <= lookRadius)
+        if (distance <= lookRadius && vivo)
         {
             //personagem está no raio de ação
             agent.isStopped = false;
