@@ -439,7 +439,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.73
-  m_Height: 1.44
+  m_Height: 2.19
   m_Direction: 1
   m_Center: {x: 0, y: 0.58, z: 0}
 --- !u!114 &242414744
@@ -1194,6 +1194,9 @@ MonoBehaviour:
   onGround: 0
   pontos: 0
   controller: {fileID: 1456603537}
+  speed: 3
+  smoothRotTime: 0.5
+  gravity: 150
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
@@ -1217,36 +1220,24 @@ MonoBehaviour:
   mira: {x: 0, y: 1, z: 0}
   cooldown: 0.7
   canAttack: 1
---- !u!54 &1456603542
-Rigidbody:
+--- !u!143 &1456603542
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456603536}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &1456603543
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456603536}
-  m_Material: {fileID: 13400000, guid: 13d04d75e2b518044a6bda0f09ca7d4f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.17
-  m_Height: 1.7
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.78, z: 0}
+  serializedVersion: 2
+  m_Height: 1.9
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1525130220 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8841992708261375833, guid: 7a444d2cea70f76419ff83657198c08d, type: 3}
@@ -1472,6 +1463,9 @@ MonoBehaviour:
   onGround: 0
   pontos: 0
   controller: {fileID: 0}
+  speed: 0
+  smoothRotTime: 0
+  gravity: 0
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
