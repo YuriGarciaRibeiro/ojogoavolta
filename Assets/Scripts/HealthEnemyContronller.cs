@@ -13,18 +13,25 @@ public class HealthEnemyContronller : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthAct -= damage;
-        anim.SetTrigger("Take Damage");
+        
 
         if (healthAct <= 0)
         {
             healthAct = 0;
             Dead();
         }
+        else
+        {
+            anim.SetTrigger("Take Damage");
+        }
+
+        
     }
 
     public  void Dead()
     {
-        Destroy(gameObject);
+        anim.SetTrigger("Die 02");
+        //faz parar de seguir
     }
 
     public void SetDamage(int damage)
