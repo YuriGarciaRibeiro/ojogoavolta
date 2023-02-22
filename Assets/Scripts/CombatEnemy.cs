@@ -135,11 +135,6 @@ public class CombatEnemy : MonoBehaviour
         }
     }
 
-    public void GetHit() { 
-
-        
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

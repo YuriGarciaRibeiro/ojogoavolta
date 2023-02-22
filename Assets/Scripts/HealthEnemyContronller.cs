@@ -19,8 +19,8 @@ public class HealthEnemyContronller : MonoBehaviour
         if (healthAct <= 0)
         {
             healthAct = 0;
-            
-            Dead();
+
+            StartCoroutine("tempoMorte");
             scriptCombat.vivo = false;
         }
         else
@@ -33,16 +33,24 @@ public class HealthEnemyContronller : MonoBehaviour
 
     public  void Dead()
     {
-        if (scriptCombat.vivo == true)
-        {
-            anim.SetTrigger("Die 02");
-        }
+        Destroy(gameObject);
         
     }
 
     public void SetDamage(int damage)
     {
         this.damage = damage;
+    }
+
+    IEnumerator tempoMorte() {
+
+        if (scriptCombat.vivo == true)
+        {
+            anim.SetTrigger("Die 02");
+            yield return new WaitForSeconds(1.1f);
+            Dead();
+        }     
+    
     }
 
 
