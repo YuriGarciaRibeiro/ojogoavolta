@@ -30,6 +30,9 @@ public class CombatEnemy : MonoBehaviour
     public bool walking;
     private bool waitFor;
     public bool vivo;
+    public bool enemyTakingDamage;
+
+    public PlayerAttackAnimation playerAttackAnim;
 
 
     public Collision collision;
@@ -39,6 +42,8 @@ public class CombatEnemy : MonoBehaviour
     {
 
         colliderRadius = 2f;
+
+        playerAttackAnim = GetComponent<PlayerAttackAnimation>();
         anim = GetComponent<Animator>();
         capsule = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
@@ -72,12 +77,14 @@ public class CombatEnemy : MonoBehaviour
             {
                 //personagem entrou no raio de ataque
                 StartCoroutine("Attack");
-                
+
+
             }
 
             else
             {
                 //saiu o raio de ataque
+                enemyTakingDamage = false;
                 attacking = false;
             }
 
@@ -89,7 +96,6 @@ public class CombatEnemy : MonoBehaviour
             anim.SetBool("Walk Forward", false);
             walking = false;
             attacking = false;
-            
 
         }
     }
@@ -124,16 +130,29 @@ public class CombatEnemy : MonoBehaviour
 
         foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius))
         {
-
             if (c.gameObject.CompareTag("Player"))
             {
                 //APLICAR DANO NO PLAYER
-                Debug.Log("bateu");
-                
+                c.GetComponent<PlayerAttackAnimation>().canAttack = false;
                 c.GetComponent<HealthController>().TakeDamage(attackDamage);
             }
         }
     }
+
+    //IEnumerator disableAttack()
+    //{
+    //    if (playerAttackAnim.enemyTakingDamage == true)
+    //    {
+    //        yield return new WaitForSeconds(1f);
+    //        anim.SetBool("Walk Forward", false);
+    //        anim.SetBool("Bite Attack", false);
+
+    //        anim.SetTrigger("Take Damage");
+    //    }
+
+
+    //}
+
 
     private void OnDrawGizmos()
     {

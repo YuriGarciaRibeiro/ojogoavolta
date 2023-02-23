@@ -14,7 +14,7 @@ public class HealthEnemyContronller : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthAct -= damage;
-        
+
 
         if (healthAct <= 0)
         {
@@ -25,16 +25,14 @@ public class HealthEnemyContronller : MonoBehaviour
         }
         else
         {
+
             anim.SetTrigger("Take Damage");
         }
-
-        
     }
 
     public  void Dead()
     {
         Destroy(gameObject);
-        
     }
 
     public void SetDamage(int damage)
@@ -47,11 +45,12 @@ public class HealthEnemyContronller : MonoBehaviour
         if (scriptCombat.vivo == true)
         {
             anim.SetTrigger("Die 02");
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(3.1f);
             Dead();
         }     
     
     }
+
 
 
     void Start()

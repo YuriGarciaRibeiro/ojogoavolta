@@ -406,6 +406,7 @@ MonoBehaviour:
   lookRadius: 10
   colliderRadius: 2
   walking: 0
+  vivo: 0
 --- !u!195 &242414740
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -457,6 +458,7 @@ MonoBehaviour:
   healthAct: 0
   healthMax: 20
   damage: 0
+  scriptCombat: {fileID: 0}
 --- !u!1 &289705585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1234,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.9
-  m_Radius: 0.5
+  m_Radius: 0.36
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -1668,6 +1670,7 @@ MonoBehaviour:
   healthAct: 0
   healthMax: 100
   damage: 3
+  scriptCombat: {fileID: 0}
 --- !u!54 &1847955553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1736,6 +1739,7 @@ MonoBehaviour:
   healthAct: 0
   healthMax: 100
   damage: 2
+  scriptCombat: {fileID: 0}
 --- !u!65 &1862678225
 BoxCollider:
   m_ObjectHideFlags: 0

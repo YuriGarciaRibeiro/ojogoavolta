@@ -138,10 +138,7 @@ public class HealthController : MonoBehaviour
             }
 
         }
-     
-
-
-
+        GetComponent<PlayerAttackAnimation>().canAttack = true;
     }
 
     private void OnCollisionEnter(Collision collision)
