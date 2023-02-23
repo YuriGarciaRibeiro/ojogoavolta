@@ -10,7 +10,8 @@ public class HealthEnemyContronller : MonoBehaviour
 
     private Animator anim;
     public CombatEnemy scriptCombat;
-
+    public Material material;
+    public Color corOriginal;
     public void TakeDamage(int damage)
     {
         healthAct -= damage;
@@ -20,14 +21,23 @@ public class HealthEnemyContronller : MonoBehaviour
         {
             healthAct = 0;
 
+            material.color = Color.red;
+            Invoke("RestaurarCorOriginal", 0.3f);
             StartCoroutine("tempoMorte");
             scriptCombat.vivo = false;
         }
         else
         {
-
+            material.color = Color.red;
+            Invoke("RestaurarCorOriginal", 0.3f);
             anim.SetTrigger("Take Damage");
+            
         }
+    }
+
+    void RestaurarCorOriginal()
+    {
+        material.color = Color.white; // Restaura a cor original do material
     }
 
     public  void Dead()
@@ -58,6 +68,7 @@ public class HealthEnemyContronller : MonoBehaviour
         healthAct = healthMax;
         anim = GetComponent<Animator>();
         scriptCombat = GetComponent<CombatEnemy>();
+        Material material = GetComponent<Renderer>().material;
     }
 
     void Update()
