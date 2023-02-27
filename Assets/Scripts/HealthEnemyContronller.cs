@@ -28,10 +28,12 @@ public class HealthEnemyContronller : MonoBehaviour
         }
         else
         {
+            
+            
+            anim.SetTrigger("Take Damage");
             material.color = Color.red;
             Invoke("RestaurarCorOriginal", 0.3f);
-            anim.SetTrigger("Take Damage");
-            
+
         }
     }
 

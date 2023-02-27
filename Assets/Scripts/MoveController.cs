@@ -36,6 +36,7 @@ public class MoveController : MonoBehaviour
 
     private Transform cameraPrincipal;
     public float gravity;
+    public HealthController healthController;
 
 
 
@@ -128,6 +129,8 @@ public class MoveController : MonoBehaviour
 
         cameraPrincipal = Camera.main.transform;
 
+        healthController = gameObject.GetComponent<HealthController>();
+
     }
 
 
@@ -140,9 +143,10 @@ public class MoveController : MonoBehaviour
     void Update()
     {
 
-
-        Move();
-
+        if (healthController.vivo == true)
+        {
+            Move();
+        }
 
 
 

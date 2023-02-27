@@ -17,10 +17,12 @@ public class HealthController : MonoBehaviour
     public int healthAct;
     public int healthMax = 20;
     public int vidaAntes;
+    public bool vivo;
 
     public List<GameObject> heartList= new List<GameObject>();
+    private Animator animator;
 
-    
+
     public void TakeDamage(int damage) {
 
         vidaAntes = healthAct;
@@ -32,6 +34,9 @@ public class HealthController : MonoBehaviour
             print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             healthAct = 0;
             print(healthAct);
+            animator.SetBool("morte",true);
+            vivo = false;
+            
             //Dead();
             for (int i = 1; i <= heartList.Count ; i += 2)
             {
@@ -170,10 +175,11 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
-        
+        vivo = true;
         heart = Resources.Load("heart") as GameObject;
         HalfHeart = Resources.Load("HalfHeart") as GameObject;
         AddHeart();
+        animator = GetComponent<Animator>();
     }
 
     
